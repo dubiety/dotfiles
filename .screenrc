@@ -1,0 +1,31 @@
+vbell off
+autodetach on
+startup_message off
+shell -$SHELL
+
+allpartial off
+defc1 off
+defencoding utf8
+bind b encoding big5 utf8
+bind u encoding utf8 utf8
+bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded!'"
+
+#caption always "%{=u .G} %-w%<%{=ub .C}%n %t%{=u .G}%+w "
+bindkey "^5C" next
+bindkey "^5D" prev
+bindkey "^[O5C" next
+bindkey "^[O5D" prev
+bindkey "^[[C" next
+bindkey "^[[D" prev
+bindkey "^[[1;5C" next
+bindkey "^[[1;5D" prev
+bindkey "^[[5C" next
+bindkey "^[[5D" prev
+bindkey "\033[5C" next
+bindkey "\033[5D" prev
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+
+hardstatus alwayslastline "%?%{WK}%-Lw%?%{WR}%n*%f %t%?(%u)%?%?%{WK}%+Lw%? %{WK} %=%{WB}%S%{kY}[%l]"
+
+defscrollback 100000
