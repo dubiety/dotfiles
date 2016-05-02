@@ -120,7 +120,7 @@ set hlsearch
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Highlight matches without moving
-nnoremap <C-F> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+nnoremap <F5> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -246,6 +246,9 @@ autocmd FilterWritePre * :call DeleteTrailingWS()
 autocmd BufWritePre *    :call DeleteTrailingWS()
 map <F2> :call DeleteTrailingWS()<CR>
 
+if has("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
