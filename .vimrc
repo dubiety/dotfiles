@@ -5,6 +5,45 @@
 "syntax enable
 syntax on
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+    " alternatively, pass a path where Vundle should install plugins
+    "call vundle#begin('~/some/path/here')
+
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+
+    """ Plugin on GitHub repo
+
+    " vim-gitgutter
+    Plugin 'airblade/vim-gitgutter'
+    " vim-markdown
+    Plugin 'plasticboy/vim-markdown'
+    " tagbar
+    Plugin 'majutsushi/tagbar'
+    " Nerdtree
+    Plugin 'scrooloose/nerdtree'
+    " easymotion
+    Plugin 'easymotion/vim-easymotion'
+    " ack.vim
+    Plugin 'mileszs/ack.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+"filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 set t_Co=256
 set background=dark
 colorscheme torte
@@ -36,8 +75,6 @@ set tags=./tags,tags
 set t_Co=256
 colorscheme darknight256
 
-set laststatus=2
-
 setl omnifunc=nullcomplete#Complete
 autocmd FileType * setl omnifunc=nullcomplete#Complete
 autocmd FileType python setl omnifunc=pythoncomplete#Complete
@@ -48,8 +85,8 @@ autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setl omnifunc=ccomplete#Completei
 
-call pathogen#infect()
-call pathogen#helptags()
+"call pathogen#infect()
+"call pathogen#helptags()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -72,7 +109,7 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
-
+nmap <leader>q :q!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -154,11 +191,7 @@ match WhitespaceEOL /\s\+$/
 " => Abbreviation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets auto-correct some easily typos
-:iabbrev realy relay
-:iabbrev realyd relayd
-:iabbrev synorealy synorelay
-:iabbrev synorealyd synorelayd
-
+:iabbrev raelly really
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -167,7 +200,6 @@ match WhitespaceEOL /\s\+$/
 set nobackup
 set nowb
 set noswapfile
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -211,9 +243,13 @@ map j gj
 map k gk
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
+" down
+map <C-k> <C-W>j
+" up
+map <C-i> <C-W>k
+" left
+map <C-j> <C-W>h
+" right
 map <C-l> <C-W>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -317,4 +353,29 @@ au FileType python syn keyword pythonDecorator True None False self
 
 au BufNewFile,BufRead *.py,*.pyw set expandtab
 au BufNewFile,BufRead *.py,*.pyw set textwidth=128
+
+""""""""""""""""""""""""""""""
+" => Plugin section
+""""""""""""""""""""""""""""""
+" powerline
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+set laststatus=2
+set showtabline=2
+set noshowmode
+
+" ----- vim-gitgutter -----
+let g:gitgutter_enabled = 1
+highlight clear SignColumn " For the same appearance as your line number column
+
+" ----- Nerdtree -----
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" ----- tagbar -----
+let g:tagbar_width = 30
+let g:tagbar_left = 1
+
+" ----- ack.vim -----
+nnoremap <F4> :Ack
 

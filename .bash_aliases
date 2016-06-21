@@ -71,6 +71,10 @@ alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file
 alias ts='tig status'
 alias tl='tig --all'
 
+alias nginx.start='launchctl load -w /usr/local/Cellar/nginx/1.8.1/homebrew.mxcl.nginx.plist'
+alias nginx.stop='launchctl unload -w /usr/local/Cellar/nginx/1.8.1/homebrew.mxcl.nginx.plist'
+alias nginx.restart='nginx.stop && nginx.start'
+
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
@@ -255,12 +259,19 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 
 #   httpDebug:  Download a web page and show info on what took time
 #   -------------------------------------------------------------------
-    httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
+httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
 
 #   ---------------------------------------
-#   9.  REMINDERS & NOTES
+#   9.  REMINDERS & NOTES & useful functions
 #   ---------------------------------------
+function hex() {
+	printf "%#x\n" $1
+}
+
+function dec() {
+	printf "%#d\n" $1
+}
 
 #   remove_disk: spin down unneeded disk
 #   ---------------------------------------
