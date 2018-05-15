@@ -24,10 +24,16 @@ call vundle#begin()
     Plugin 'majutsushi/tagbar'
     " Nerdtree
     Plugin 'scrooloose/nerdtree'
-    " easymotion
-    Plugin 'easymotion/vim-easymotion'
     " ack.vim
     Plugin 'mileszs/ack.vim'
+    " vim-fugitive
+    Plugin 'tpope/vim-fugitive'
+    " Syntastic
+    Plugin 'vim-syntastic/syntastic'
+     " vim-go
+    Plugin 'fatih/vim-go'
+    " auto formatter
+    Plugin 'Townk/vim-autoclose'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -68,6 +74,9 @@ nnoremap <F8>  :TagbarToggle<CR>
 nnoremap <C-o> :tabprevious<CR>
 nnoremap <C-p> :tabnext<CR>
 nnoremap <C-l> :tabclose<CR>
+" Set paset mode
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F3>
 
 let g:tagbar_width = 30
 let g:tagbar_left = 1
@@ -84,6 +93,7 @@ autocmd FileType css setl omnifunc=csscomplete#CompleteCSS noci
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setl omnifunc=ccomplete#Completei
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 "call pathogen#infect()
 "call pathogen#helptags()
@@ -243,13 +253,9 @@ map j gj
 map k gk
 
 " Smart way to move between windows
-" down
-map <C-k> <C-W>j
-" up
-map <C-i> <C-W>k
-" left
-map <C-j> <C-W>h
-" right
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,7 +289,7 @@ autocmd BufWritePre *    :call DeleteTrailingWS()
 map <F2> :call DeleteTrailingWS()<CR>
 
 if has("autocmd")
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -351,8 +357,7 @@ endfunction
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
-au BufNewFile,BufRead *.py,*.pyw set expandtab
-au BufNewFile,BufRead *.py,*.pyw set textwidth=128
+au BufNewFile,BufRead *.py,*.pyw set expandtab textwidth=80
 
 """"""""""""""""""""""""""""""
 " => Plugin section
@@ -363,19 +368,13 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 
-" ----- vim-gitgutter -----
-let g:gitgutter_enabled = 1
-highlight clear SignColumn " For the same appearance as your line number column
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" ----- Nerdtree -----
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-" ----- tagbar -----
-let g:tagbar_width = 30
-let g:tagbar_left = 1
-
-" ----- ack.vim -----
-nnoremap <F4> :Ack
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
