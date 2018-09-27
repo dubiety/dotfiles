@@ -34,6 +34,28 @@ call vundle#begin()
     Plugin 'fatih/vim-go'
     " auto formatter
     Plugin 'Townk/vim-autoclose'
+    " OmniCppComplete
+    Plugin 'vim-scripts/OmniCppComplete'
+    " YouCompleteMe
+    Plugin 'Valloric/YouCompleteMe'
+    " Golang highlighting
+    Plugin 'fatih/vim-go'
+    " Color Scheme
+    Plugin 'fatih/molokai'
+    " hjson syntax support
+    Plugin 'hjson/vim-hjson'
+    " python linter
+    Plugin 'nvie/vim-flake8'
+    " Jinja highlighting
+    Plugin 'Glench/Vim-Jinja2-Syntax'
+    " Syntastic
+    Plugin 'vim-syntastic/syntastic'
+    " Ansible Syntax highlighting
+    Plugin 'pearofducks/ansible-vim'
+    " vim-systemd syntax
+    Plugin 'Matt-Deacalion/vim-systemd-syntax'
+    " gocode autocompletion
+    Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -360,6 +382,22 @@ au FileType python syn keyword pythonDecorator True None False self
 au BufNewFile,BufRead *.py,*.pyw set expandtab textwidth=80
 
 """"""""""""""""""""""""""""""
+" => Go section
+""""""""""""""""""""""""""""""
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+""""""""""""""""""""""""""""""
+" => Systemd section
+""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.service set filetype=systemd
+au BufRead,BufNewFile *.timer set filetype=systemd
+au BufRead,BufNewFile *.mount set filetype=systemd
+au BufRead,BufNewFile *.target set filetype=systemd
+au BufRead,BufNewFile *.socket set filetype=systemd
+au BufRead,BufNewFile *.slice set filetype=systemd
+au BufRead,BufNewFile *.busname set filetype=systemd
+
+""""""""""""""""""""""""""""""
 " => Plugin section
 """"""""""""""""""""""""""""""
 " powerline
@@ -378,3 +416,32 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_lua_checkers = ["luacheck"]
+nnoremap <leader>c :SyntasticCheck<CR>
+nnoremap <leader>t :SyntasticToggleMode<CR>
+
+" ----- ansible-vim -----
+let g:ansible_unindent_after_newline = 1
+let g:ansible_extra_keywords_highlight = 1
+let g:ansible_normal_keywords_highlight = 'Constant'
+let g:ansible_with_keywords_highlight = 'Constant'
+
+" ----- ag -----
+let g:ackprg = 'ag --vimgrep'
+
+" ----- vim-go -----
+let g:go_fmt_command = "goimports"
+let g:go_metalinter_enabled = ['vet', 'golint', 'varcheck', 'gosimple']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_deadline = "5s"
+let g:go_highlight_functions = 1
+let g:go_highlight_types = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+nnoremap <leader>T :GoAlternate<CR>
+
+" --- ycm ---
+let g:loaded_youcompleteme = 1
