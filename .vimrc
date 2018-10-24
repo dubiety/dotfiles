@@ -48,6 +48,10 @@ call vundle#begin()
     Plugin 'pearofducks/ansible-vim'
     " vim-systemd syntax
     Plugin 'Matt-Deacalion/vim-systemd-syntax'
+	" vim syntax setup/highlight for terraform
+	Plugin 'hashivim/vim-terraform'
+	" yaml
+	Plugin 'avakhov/vim-yaml'
     " gocode autocompletion
     Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
 
@@ -411,6 +415,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_lua_checkers = ["luacheck"]
+let g:syntastic_yaml_checkers = ['yamllint']
 nnoremap <leader>c :SyntasticCheck<CR>
 nnoremap <leader>t :SyntasticToggleMode<CR>
 
@@ -437,3 +442,11 @@ nnoremap <leader>T :GoAlternate<CR>
 
 " --- ycm ---
 let g:loaded_youcompleteme = 1
+
+" --- terraform ---
+au BufRead,BufNewFile *.tf setlocal filetype=terraform expandtab tabstop=2 shiftwidth=2
+au BufRead,BufNewFile *.tfvars setlocal filetype=terraform expandtab tabstop=2 shiftwidth=2
+au BufRead,BufNewFile *.tfstate setlocal filetype=terraform expandtab tabstop=2 shiftwidth=2
+
+let g:terraform_align = 1
+let g:terraform_fmt_on_save = 1
