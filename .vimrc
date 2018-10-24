@@ -38,18 +38,12 @@ call vundle#begin()
     Plugin 'vim-scripts/OmniCppComplete'
     " YouCompleteMe
     Plugin 'Valloric/YouCompleteMe'
-    " Golang highlighting
-    Plugin 'fatih/vim-go'
-    " Color Scheme
-    Plugin 'fatih/molokai'
     " hjson syntax support
     Plugin 'hjson/vim-hjson'
     " python linter
     Plugin 'nvie/vim-flake8'
     " Jinja highlighting
     Plugin 'Glench/Vim-Jinja2-Syntax'
-    " Syntastic
-    Plugin 'vim-syntastic/syntastic'
     " Ansible Syntax highlighting
     Plugin 'pearofducks/ansible-vim'
     " vim-systemd syntax
@@ -117,8 +111,6 @@ autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setl omnifunc=ccomplete#Completei
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-"call pathogen#infect()
-"call pathogen#helptags()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
