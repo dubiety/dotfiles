@@ -12,7 +12,10 @@
 #   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
 # then uncomment the following line to make Meta + arrow keys mapping work
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
-
+unbind -T copy-mode-vi MouseDragEnd1Pane
+bind -T copy-mode-vi MouseDown1Pane select-pane \;\
+  send-keys -X copy-pipe "pbcopy" \;\
+  send-keys -X clear-selection
 
 # -- windows & pane creation ---------------------------------------------------
 
@@ -306,5 +309,5 @@ bind -n S-Right next-window
 # move status line to top
 #set -g status-position top
 #
-set -g renumber-windows on
+set -g renumber-windows off
 bind C-s command-prompt -p swap-window 'swap-window -t %%'
