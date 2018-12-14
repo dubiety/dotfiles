@@ -31,13 +31,13 @@ call vundle#begin()
     " Syntastic
     Plugin 'vim-syntastic/syntastic'
      " vim-go
-    Plugin 'fatih/vim-go'
+    Plugin 'fatih/vim-go', { 'for': ['mod', 'go'] }
     " auto formatter
     Plugin 'Townk/vim-autoclose'
     " OmniCppComplete
     Plugin 'vim-scripts/OmniCppComplete'
     " YouCompleteMe
-    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe', { 'for': ['go', 'python'] }
     " hjson syntax support
     Plugin 'hjson/vim-hjson'
     " python linter
@@ -45,13 +45,13 @@ call vundle#begin()
     " Jinja highlighting
     Plugin 'Glench/Vim-Jinja2-Syntax'
     " Ansible Syntax highlighting
-    Plugin 'pearofducks/ansible-vim'
+    Plugin 'pearofducks/ansible-vim', { 'for': 'yaml' }
     " vim-systemd syntax
-    Plugin 'Matt-Deacalion/vim-systemd-syntax'
+    Plugin 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
 	" vim syntax setup/highlight for terraform
-	Plugin 'hashivim/vim-terraform'
+	Plugin 'hashivim/vim-terraform', { 'for': 'terraform' }
 	" yaml
-	Plugin 'avakhov/vim-yaml'
+	Plugin 'avakhov/vim-yaml', { 'for': 'yaml' }
     " gocode autocompletion
     Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
 
@@ -119,7 +119,8 @@ autocmd FileType c setl omnifunc=ccomplete#Completei
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.j2 setlocal ts=2 sts=2 sw=2 expandtab filetype=jinja
 autocmd BufRead,BufNewFile Jenkinsfile* setlocal expandtab filetype=groovy
-
+autocmd BufRead,BufNewFile *.sh.* setlocal filetype=sh
+autocmd BufRead,BufNewFile *.tmux.conf.* setlocal filetype=tmux
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -279,11 +280,13 @@ map j gj
 map k gk
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>h
+noremap <C-k> <C-W>j
+noremap <C-i> <C-W>k
+noremap <C-l> <C-W>l
 
+" git hotkey
+nmap <C-g> :Gblame<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
