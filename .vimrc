@@ -54,6 +54,8 @@ call vundle#begin()
 	Plugin 'avakhov/vim-yaml', { 'for': 'yaml' }
     " gocode autocompletion
     Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
+	" Vue syntax highlighting
+	Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -117,6 +119,7 @@ autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setl omnifunc=ccomplete#Completei
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.j2 setlocal ts=2 sts=2 sw=2 expandtab filetype=jinja
 autocmd BufRead,BufNewFile Jenkinsfile* setlocal expandtab filetype=groovy
 autocmd BufRead,BufNewFile *.sh.* setlocal filetype=sh
@@ -408,7 +411,8 @@ au BufRead,BufNewFile *.busname set filetype=systemd
 " => Plugin section
 """"""""""""""""""""""""""""""
 " powerline
-source /usr/local/lib/python3.6/dist-packages/powerline/bindings/vim/plugin/powerline.vim
+" source /usr/local/lib/python3.6/dist-packages/powerline/bindings/vim/plugin/powerline.vim
+source /Users/mac/.local/lib/python3.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
 set showtabline=2
 set noshowmode
