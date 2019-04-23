@@ -45,7 +45,7 @@ call vundle#begin()
     " Jinja highlighting
     Plugin 'Glench/Vim-Jinja2-Syntax'
     " Ansible Syntax highlighting
-    Plugin 'pearofducks/ansible-vim', { 'for': 'yaml' }
+    Plugin 'pearofducks/ansible-vim'
     " vim-systemd syntax
     Plugin 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
 	" vim syntax setup/highlight for terraform
@@ -56,6 +56,10 @@ call vundle#begin()
     Plugin 'mdempsky/gocode', {'rtp': 'vim/'}
 	" Vue syntax highlighting
 	Plugin 'posva/vim-vue'
+	" SCSS syntax highlighting
+	Plugin 'cakebaker/scss-syntax.vim'
+	" vim for nginx
+	Plugin 'chr4/nginx.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -120,10 +124,15 @@ autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setl omnifunc=ccomplete#Completei
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType vue syntax sync fromstart
+autocmd FileType scss set iskeyword+=-
+autocmd BufRead,BufNewFile */deploy/*.yml set filetype=yaml.ansible
 autocmd BufRead,BufNewFile *.j2 setlocal ts=2 sts=2 sw=2 expandtab filetype=jinja
 autocmd BufRead,BufNewFile Jenkinsfile* setlocal expandtab filetype=groovy
 autocmd BufRead,BufNewFile *.sh.* setlocal filetype=sh
 autocmd BufRead,BufNewFile *.tmux.conf.* setlocal filetype=tmux
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufRead,BufNewFile *.scss set filetype=scss
+autocmd BufRead,BufNewFile */nginx/*/*.conf,*/nginx/*/default set filetype=nginx
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -426,11 +435,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_lua_checkers = ["luacheck"]
 let g:syntastic_yaml_checkers = ['yamllint']
+let g:syntastic_go_checkers = ['gometalinter']
 nnoremap <leader>c :SyntasticCheck<CR>
 nnoremap <leader>t :SyntasticToggleMode<CR>
 
