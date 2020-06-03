@@ -420,8 +420,7 @@ au BufRead,BufNewFile *.busname set filetype=systemd
 " => Plugin section
 """"""""""""""""""""""""""""""
 " powerline
-" source /usr/local/lib/python3.6/dist-packages/powerline/bindings/vim/plugin/powerline.vim
-source /Users/mac/.local/lib/python3.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+" source <path-to-powerline-pip-package>/powerline.vim
 set laststatus=2
 set showtabline=2
 set noshowmode
