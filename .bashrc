@@ -63,7 +63,7 @@ NO_COLOR="\[\033[0m\]"
 
 color_prompt=yes
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}$GREEN\u$ROSE@$PURPLE\w$RED\$(git_branch)$NO_COLOR: $YELLOW\$(/bin/ls -lah | /usr/bin/grep -m 1 total | /usr/bin/sed 's/total //')b \[\033[1;37m\][\$(/bin/date +%T)]\n$NO_COLOR\$ "
+    PS1="${debian_chroot:+($debian_chroot)}$GREEN\u$ROSE@$PURPLE\w$RED\$(git_branch)$NO_COLOR: $YELLOW\$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //')b \[\033[1;37m\][\$(/bin/date +%T)]\n$NO_COLOR\$ "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
