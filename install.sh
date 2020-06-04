@@ -10,7 +10,7 @@ echo -e "${YELLOW}Updating apt packages${NO_COLOR}"
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt install -y vim powerline git gcc sed grep tig unzip build-essential python-pip make libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils
+sudo apt install -y vim powerline git gcc sed grep tig jq unzip build-essential python-pip make libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm xz-utils
 
 echo -e "${YELLOW}Copying RC files and vim settings${NO_COLOR}"
 sudo cp -r .vim ../
@@ -34,6 +34,7 @@ PYENV_VERSION=3.8.3
 pyenv install $PYENV_VERSION
 pip install -U pip
 pip install --user powerline-status
+pip install yq
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 sudo mkdir ~/.fonts
