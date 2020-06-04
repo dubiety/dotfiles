@@ -82,10 +82,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias ls='ls -FG'
-alias ll='ls -alFGp'
-alias la='ls -AG'
-alias l='ls -CFG'
+alias ls='ls --color=auto'
+#alias ll='ls -alFp'
+alias la='ls -A'
+alias l='ls -CF'
 alias screeni='screen -e^Vv -S innerc -c ~/.screenrc-inner'
 
 # Alias definitions.

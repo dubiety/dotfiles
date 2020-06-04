@@ -32,6 +32,7 @@ source ~/.bashrc
 
 PYENV_VERSION=3.8.3
 pyenv install $PYENV_VERSION
+pyenv global $PYENV_VERSION
 pip install -U pip
 pip install --user powerline-status
 pip install yq
