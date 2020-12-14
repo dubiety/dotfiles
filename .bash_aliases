@@ -47,6 +47,7 @@ alias ll='ls -la'                           # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 # cd() { builtin cd "$@"; ll; }             # Always list directory contents upon 'cd'
 alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias c..='cd ../'                          # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                           # Go back 1 directory level
 alias .1='cd ../'                           # Go back 1 directory level
 alias ...='cd ../../'                       # Go back 2 directory levels
@@ -74,6 +75,9 @@ alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file
 # tig alias
 alias ts='tig status'
 alias tl='tig --all'
+alias k='kubectl'
+alias kget='kubectl config get-contexts'
+alias kuse='kubectl config use-context'
 
 alias nginx.start='launchctl load -w /usr/local/Cellar/nginx/1.8.1/homebrew.mxcl.nginx.plist'
 alias nginx.stop='launchctl unload -w /usr/local/Cellar/nginx/1.8.1/homebrew.mxcl.nginx.plist'
@@ -201,7 +205,7 @@ my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
 #   6.  NETWORKING
 #   ---------------------------
 
-alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias myip='curl https://api.myip.com'              # myip:         Public facing IP Address
 alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
 alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
 alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets

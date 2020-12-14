@@ -45,7 +45,7 @@ call vundle#begin()
     " Jinja highlighting
     Plugin 'Glench/Vim-Jinja2-Syntax'
     " Ansible Syntax highlighting
-    Plugin 'pearofducks/ansible-vim'
+    Plugin 'pearofducks/ansible-vim', { 'for': ['yaml.ansible'] }
     " vim-systemd syntax
     Plugin 'Matt-Deacalion/vim-systemd-syntax', { 'for': 'systemd' }
 	" vim syntax setup/highlight for terraform
@@ -60,6 +60,10 @@ call vundle#begin()
 	Plugin 'cakebaker/scss-syntax.vim'
 	" vim for nginx
 	Plugin 'chr4/nginx.vim'
+	" vim auto format
+	Plugin 'Chiel92/vim-autoformat'
+	" vim mustache syntax
+	Plugin 'mustache/vim-mustache-handlebars'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
