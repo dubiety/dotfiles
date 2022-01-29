@@ -16,7 +16,7 @@ sudo apt install -y vim powerline git gcc sed grep tig jq unzip build-essential 
 
 echo -e "${YELLOW}Copying RC files and vim settings${NO_COLOR}"
 cp -r .vim ~/
-cp -r .bash_* .screenrc .tigrc .tmux.conf* .vimrc .zshrc .profile ~/
+cp -r .bash* .screenrc .tigrc .tmux.conf* .vimrc .zshrc .profile ~/
 
 echo -e "${YELLOW}Installing shellcheck${NO_COLOR}"
 scversion="v0.7.2" # or "v0.y.z", or "latest"
@@ -38,6 +38,15 @@ if [ ! -e ~/.pyenv ]; then
   git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 else
   pushd ~/.pyenv
+  git pull origin master
+  popd
+fi
+
+echo -e "${YELLOW}Installing goenv${NO_COLOR}"
+if [ ! -e ~/.goenv ]; then
+  git clone https://github.com/syndbg/goenv.git ~/.goenv
+else
+  pushd ~/.goenv
   git pull origin master
   popd
 fi
