@@ -78,6 +78,7 @@ alias tl='tig --all'
 alias k='kubectl'
 alias kget='kubectl config get-contexts'
 alias kuse='kubectl config use-context'
+alias t='tmux'
 
 alias nginx.start='launchctl load -w /usr/local/Cellar/nginx/1.8.1/homebrew.mxcl.nginx.plist'
 alias nginx.stop='launchctl unload -w /usr/local/Cellar/nginx/1.8.1/homebrew.mxcl.nginx.plist'

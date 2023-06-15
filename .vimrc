@@ -64,6 +64,8 @@ call vundle#begin()
 	Plugin 'Chiel92/vim-autoformat'
 	" vim mustache syntax
 	Plugin 'mustache/vim-mustache-handlebars'
+	" vim for toml
+	Plugin 'cespare/vim-toml'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -135,7 +137,8 @@ autocmd BufRead,BufNewFile *.sh.* setlocal filetype=sh
 autocmd BufRead,BufNewFile *.tmux.conf.* setlocal filetype=tmux
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 autocmd BufRead,BufNewFile *.scss set filetype=scss
-autocmd BufRead,BufNewFile */nginx/*/*.conf,*/nginx/*/default set filetype=nginx
+autocmd BufRead,BufNewFile *.toml set filetype=toml
+autocmd BufRead,BufNewFile */nginx/*.conf,*/nginx/*/*.conf,*/nginx/*/default set filetype=nginx
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -300,7 +303,7 @@ noremap <C-k> <C-W>j
 noremap <C-i> <C-W>k
 noremap <C-l> <C-W>l
 
-" git hotkey
+" git-fugitive hotkey
 nmap <C-g> :Gblame<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -443,7 +446,9 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_lua_checkers = ["luacheck"]
 let g:syntastic_yaml_checkers = ['yamllint']
-let g:syntastic_go_checkers = ['gometalinter']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++17'
+" let g:syntastic_go_checkers = ['golangci-lint'] use vim-go's golangci-lint
 nnoremap <leader>c :SyntasticCheck<CR>
 nnoremap <leader>t :SyntasticToggleMode<CR>
 
@@ -458,9 +463,14 @@ let g:ackprg = 'ag --vimgrep'
 
 " ----- vim-go -----
 let g:go_fmt_command = "goimports"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_auto_type_info = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'varcheck', 'gosimple']
+let g:go_metalinter_command = "golangci-lint run --fast"
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_list_type = 'quickfix'
+let g:go_metalinter_autosave_enabled = ['govet', 'golint', 'varcheck', 'gofmt']
 let g:go_metalinter_deadline = "5s"
 let g:go_highlight_functions = 1
 let g:go_highlight_types = 1
