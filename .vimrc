@@ -66,6 +66,8 @@ call vundle#begin()
 	Plugin 'mustache/vim-mustache-handlebars'
 	" vim for toml
 	Plugin 'cespare/vim-toml'
+	" Deep TabNine
+	Plugin 'zxqfl/tabnine-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -404,7 +406,7 @@ endfunction
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
-au BufNewFile,BufRead *.py,*.pyw set expandtab textwidth=80
+"au BufNewFile,BufRead *.py,*.pyw set expandtab textwidth=80
 
 """"""""""""""""""""""""""""""
 " => Go section
@@ -443,8 +445,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_pylint_post_args='--max-line-length=150'
 let g:syntastic_php_checkers = ['php', 'phpcs']
-let g:syntastic_lua_checkers = ["luacheck"]
+let g:syntastic_lua_checkers = ['luacheck']
 let g:syntastic_yaml_checkers = ['yamllint']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++17'
@@ -488,3 +491,7 @@ au BufRead,BufNewFile *.tfstate setlocal filetype=terraform expandtab tabstop=2 
 
 let g:terraform_align = 1
 let g:terraform_fmt_on_save = 1
+
+" --- ctags ---
+set tags=tags
+set autochdir
