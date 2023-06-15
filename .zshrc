@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="/Users/mac/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -44,7 +51,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -57,16 +64,16 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# powerline
-# command line 左邊想顯示的內容
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs) # <= left prompt 設了 "dir"
-# command line 右邊想顯示的內容
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
+# powerline, please refer to settings in ~/.p10k.zsh
+# command line left side
+# POWERLEVEL9K_MODE='nerdfont-complete'
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="$ "
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs) # <= left prompt 設了 "dir"
+# command line right side
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -78,6 +85,17 @@ plugins=(git zsh-completions)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH=$GOENV_ROOT/bin:/usr/local/opt/openssl@1.1/bin:/usr/local/opt/mysql-client/bin:$PATH
+eval "$(goenv init -)"
+
+# Add go path
+export PATH=$GOENV_ROOT/bin:$PATH
+
+# golangci completion
+source <(golangci-lint completion zsh)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -97,6 +115,9 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+
 # For zsh syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # For zsh autosuggestion
@@ -115,3 +136,28 @@ alias ts="tig status"
 alias tl="tig --all"
 alias v="vim -p"
 alias vi="vim -p"
+alias ll="ls -la"
+alias h="heroku"
+alias k="kubectl"
+
+# pyenv init manipulate PATH, os puth it at the end
+eval "$(pyenv init --path)"
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/Users/mac/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/Users/mac/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/Users/mac/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/Users/mac/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+# <<< conda initialize <<<
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
