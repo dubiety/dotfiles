@@ -80,7 +80,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-completions)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+plugins=(git zsh-completions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 
 # goenv
 export GOENV_ROOT="$HOME/.goenv"
-export PATH=$GOENV_ROOT/bin:/usr/local/opt/openssl@1.1/bin:/usr/local/opt/mysql-client/bin:$PATH
+export PATH=$GOENV_ROOT/bin:/usr/local/opt/openssl@1.1/bin:/usr/local/opt/mysql-client/bin:/opt/homebrew/bin:$PATH
 eval "$(goenv init -)"
 
 # Add go path
@@ -119,9 +120,11 @@ source <(golangci-lint completion zsh)
 export PYENV_ROOT="$HOME/.pyenv"
 
 # For zsh syntax-highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # For zsh autosuggestion
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
