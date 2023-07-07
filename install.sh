@@ -3,9 +3,9 @@
 set -eu
 
 YELLOW="\033[1;33m"
-PURPLE="\033[1;34m"
-ROSE="\033[0;35m"
-CYAN="\033[1;36m"
+# PURPLE="\033[1;34m"
+# ROSE="\033[0;35m"
+# CYAN="\033[1;36m"
 NO_COLOR="\033[0m"
 
 echo -e "${YELLOW}Updating apt packages${NO_COLOR}"
@@ -51,9 +51,7 @@ else
   popd
 fi
 
-source ~/.profile
-
-PYENV_VERSION=3.8.3
+PYENV_VERSION=3.11.1
 pyenv install $PYENV_VERSION
 pyenv global $PYENV_VERSION
 pip install -U pip
@@ -63,5 +61,6 @@ wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.ot
 wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 mkdir -p ~/.fonts
 fc-cache -vf ~/.fonts/
+mv -f PowerlineSymbols.otf ~/.fonts/
 mkdir -p ~/.config/fontconfig/conf.d/
 mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
